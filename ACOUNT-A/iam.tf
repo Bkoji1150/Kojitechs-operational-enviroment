@@ -17,9 +17,9 @@ resource "aws_iam_role" "ec2_s3_access_role" {
 EOF
 }
 
-resource "aws_iam_instance_profile" "ec2profile" {                            
-     name  = "ec2profile"                         
-    role = aws_iam_role.ec2_s3_access_role.name
+resource "aws_iam_instance_profile" "ec2profile" {
+  name = "ec2profile"
+  role = aws_iam_role.ec2_s3_access_role.name
 }
 
 resource "aws_iam_policy" "policy" {
@@ -46,8 +46,7 @@ resource "aws_iam_policy" "policy" {
 EOF
 }
 
-
 resource "aws_iam_role_policy_attachment" "ec2-attach" {
-  role     = aws_iam_role.ec2_s3_access_role.name
+  role       = aws_iam_role.ec2_s3_access_role.name
   policy_arn = aws_iam_policy.policy.arn
 }

@@ -10,11 +10,11 @@ variable "vpc_cidr" {
 }
 
 variable "private_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "public_subnets" {
-  type = list
+  type = list(any)
 }
 
 variable "key_name" {

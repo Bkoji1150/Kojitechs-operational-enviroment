@@ -1,38 +1,36 @@
 
 # Using the module from https://github.com/terraform-aws-modules/terraform-aws-ec2-instance
 module "ec2_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+  source = "terraform-aws-modules/ec2-instance/aws"
 
-  name = "baston-public-server"
-
-  ami                    = data.aws_ssm_parameter.golden_ami.value # Golden iam from parameter store with aws cli baked
-  instance_type          = "t2.micro"
-  monitoring             = true
-  vpc_security_group_ids = [aws_security_group.My_VPC_Security_Group_Public.id]
-  subnet_id              = module.vpc.public_subnets[0]
-  associate_public_ip_address = true   
+  name                        = "baston-public-server"
+  ami                         = data.aws_ssm_parameter.golden_ami.value # Golden iam from parameter store with aws cli baked
+  instance_type               = "t2.micro"
+  monitoring                  = true
+  vpc_security_group_ids      = [aws_security_group.My_VPC_Security_Group_Public.id]
+  subnet_id                   = module.vpc.public_subnets[0]
+  associate_public_ip_address = true
 
   tags = {
-    Name   = "Baston-Server"
+    Name        = "Baston-Server"
     Environment = "prod"
   }
 }
 
 
 module "ec2_private_instance" {
-  source  = "terraform-aws-modules/ec2-instance/aws"
+  source = "terraform-aws-modules/ec2-instance/aws"
 
-  name = "private_instance"
-
+  name                   = "private_instance"
   ami                    = data.aws_ssm_parameter.golden_ami.value # Golden iam from parameter store with aws cli baked
   instance_type          = "t2.micro"
   monitoring             = true
   vpc_security_group_ids = [aws_security_group.My_VPC_Security_Group_Private.id]
-  subnet_id              = module.vpc.private_subnets[0] 
-    iam_instance_profile = aws_iam_instance_profile.ec2profile.name
+  subnet_id              = module.vpc.private_subnets[0]
+  iam_instance_profile   = aws_iam_instance_profile.ec2profile.name
 
   tags = {
-    Name   = "private_instance"
+    Name        = "private_instance"
     Environment = "prod"
   }
 }
@@ -59,19 +57,18 @@ resource "aws_security_group" "My_VPC_Security_Group_Private" {
   }
 }
 
-
 resource "aws_security_group" "My_VPC_Security_Group_Public" {
   vpc_id      = module.vpc.vpc_id
   name        = "My VPC Security Group Public"
   description = "My VPC Security Group Public"
   ingress {
-    cidr_blocks = ["71.163.242.34/32"] 
+    cidr_blocks = ["71.163.242.34/32"]
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
   }
   ingress {
-    cidr_blocks = ["71.163.242.34/32"] 
+    cidr_blocks = ["71.163.242.34/32"]
     from_port   = 8080
     to_port     = 8080
     protocol    = "tcp"
@@ -92,4 +89,3 @@ resource "aws_key_pair" "deployer" {
   key_name   = "s3_key"
   public_key = file(var.public_key_path)
 }
-# /Users/kojibello/.ssh

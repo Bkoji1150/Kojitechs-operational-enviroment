@@ -1,6 +1,6 @@
 provider "aws" {
-  region                  = var.aws_region
-  profile                 = "default"
+  region  = var.aws_region
+  profile = "default"
   assume_role {
     role_arn = "arn:aws:iam::${var.aws_account_id}:role/Role_For-S3_Creation"
   }
