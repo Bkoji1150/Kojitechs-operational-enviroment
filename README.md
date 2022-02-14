@@ -44,7 +44,8 @@ ssh -i id_rsa ec2-user@private_ip
 
 # Now the test the connection and make sure we can access s3 object in ACCOUNT-B
 ```hcl
-aws s3 ls s3://allowec2buckectfordifferentaccount 
+aws s3 ls s3://BUCKETNAME
 ```
 
 # Authour 
+kojibello058@gmail.com
