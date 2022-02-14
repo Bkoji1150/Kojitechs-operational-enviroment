@@ -7,14 +7,14 @@ This module was built VPC IN ACCOUN-A AND BUILD S3 BUCKET IN ACCOUN-B [cookiecut
 # RESOURCES
 ACCOUNT-A
 
-# vpc
-# ec2
-# s3 private link
+vpc
+ec2
+s3 private link
 
 ACCOUNT-B
 In Account B 
-# s3 Bucket
-# bucket policy
+s3 Bucket
+bucket policy
 
 # Usage
 There are two instances in ACCOUNT-A both PUBLIC and AND PRIVATE instance in ACCOUNT-A. 
