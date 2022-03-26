@@ -1,4 +1,4 @@
-resource "aws_iam_role" "ec2_s3_access_role" {
+/*resource "aws_iam_role" "ec2_s3_access_role" {
   name               = "ec2-s3"
   assume_role_policy = <<EOF
 {
@@ -50,3 +50,4 @@ resource "aws_iam_role_policy_attachment" "ec2-attach" {
   role       = aws_iam_role.ec2_s3_access_role.name
   policy_arn = aws_iam_policy.policy.arn
 }
+*/

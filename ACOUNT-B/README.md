@@ -35,7 +35,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | n/a | `string` | `"735972722491"` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
-| <a name="input_bucket"></a> [bucket](#input\_bucket) | n/a | `list(any)` | <pre>[<br>  "ecs.terraform.cluster.terraform",<br>  "ecs.working.cluster.terraform"<br>]</pre> | no |
+| <a name="input_bucket"></a> [bucket](#input\_bucket) | n/a | `list(any)` | <pre>[<br>  "ecs.terraform.cluster.terraform",<br>  "ecs.working.cluster.terraform",<br>  "hqr.common.database.module.kojitechs.tf",<br>  "operational.vpc.tf.kojitechs",<br>  "vpc.peering.tf.kojitechs"<br>]</pre> | no |
 
 ## Outputs
 

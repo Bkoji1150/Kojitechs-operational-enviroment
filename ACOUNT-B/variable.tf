@@ -8,6 +8,12 @@ variable "aws_region" {
   default = "us-east-1"
 }
 variable "bucket" {
-  type    = list(any)
-  default = ["ecs.terraform.cluster.terraform", "ecs.working.cluster.terraform"]
+  type = list(any)
+  default = [
+    "ecs.terraform.cluster.terraform",
+    "ecs.working.cluster.terraform",
+    "hqr.common.database.module.kojitechs.tf",
+    "operational.vpc.tf.kojitechs",
+    "vpc.peering.tf.kojitechs"
+  ]
 }

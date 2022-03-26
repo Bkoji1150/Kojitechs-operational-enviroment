@@ -1,4 +1,4 @@
-
+/*
 # Using the module from https://github.com/terraform-aws-modules/terraform-aws-ec2-instance
 module "ec2_instance" {
   source = "terraform-aws-modules/ec2-instance/aws"
@@ -89,3 +89,4 @@ resource "aws_key_pair" "deployer" {
   key_name   = "s3_key"
   public_key = file(var.public_key_path)
 }
+*/
