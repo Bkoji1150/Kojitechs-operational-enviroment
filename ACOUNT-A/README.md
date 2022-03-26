@@ -1,11 +1,11 @@
-# AWS-S3-CROSS-ACCOUNT-ACCESS-WITH-TERRAFORM
+### AWS-S3-CROSS-ACCOUNT-ACCESS-WITH-TERRAFORM
 AWS-S3-CROSS-ACCOUNT-ACCESS-WITH-TERRAFORM
 
 This module was built VPC IN ACCOUN-A AND BUILD S3 BUCKET IN ACCOUN-B [cookiecutter-microservice](https://github.com/Bkoji1150/AWS-S3-CROSS-ACCOUNT-ACCESS-WITH-TERRAFORM).
 
 <!-- prettier-ignore-start -->
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-## Requirements
+### Requirements
 
 | Name | Version |
 |------|---------|
@@ -13,26 +13,26 @@ This module was built VPC IN ACCOUN-A AND BUILD S3 BUCKET IN ACCOUN-B [cookiecut
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.1.5 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 3.0 |
 
-## Providers
+### Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 3.0 |
 
-## Modules
+#### Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_required_tags"></a> [required\_tags](#module\_required\_tags) | git::git@github.com:Bkoji1150/kojitechs-tf-aws-required-tags.git | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | n/a |
 
-## Resources
+### Resources
 
 | Name | Type |
 |------|------|
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 
-## Inputs
+##### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
@@ -52,7 +52,7 @@ This module was built VPC IN ACCOUN-A AND BUILD S3 BUCKET IN ACCOUN-B [cookiecut
 | <a name="input_tier"></a> [tier](#input\_tier) | Canonical name of the application tier | `string` | `"APP"` | no |
 | <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | n/a | `string` | n/a | yes |
 
-## Outputs
+#### Outputs
 
 | Name | Description |
 |------|-------------|
@@ -67,6 +67,6 @@ This module was built VPC IN ACCOUN-A AND BUILD S3 BUCKET IN ACCOUN-B [cookiecut
 | <a name="output_vpc_id"></a> [vpc\_id](#output\_vpc\_id) | The ID of the VPC |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-## Authors
+### Authors
 
 Module is maintained by [&&&](https://github.com/antonbabenko) with help from [these awesome contributors](https://github.com/terraform-aws-modules/terraform-aws-autoscaling/graphs/contributors).
