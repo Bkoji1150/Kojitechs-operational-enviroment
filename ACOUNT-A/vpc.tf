@@ -37,28 +37,7 @@ module "vpc" {
   public_subnets       = var.public_subnets
   enable_dns_hostnames = true
 
-  enable_nat_gateway = true
+  enable_nat_gateway = false
   enable_vpn_gateway = false
-  tags               = local.required_tags
+
 }
-
-
-# lookup(var.aws_account_id, terraform.workspace)
-
-/*
-# THIS VALUE FOR AMI IS FOUND IN PARAMETER STORE(SAME REGION)
-data "aws_ssm_parameter" "golden_ami" {
-  name = "/GoldenAMI/Linux/RedHat-7/latest"
-}
-
-resource "aws_vpc_endpoint" "s3" {
-  vpc_id       = module.vpc.vpc_id
-  service_name = "com.amazonaws.us-east-1.s3"
-}
-
-# associate route table with VPC endpoint
-resource "aws_vpc_endpoint_route_table_association" "private_route_table_association" {
-  route_table_id  = module.vpc.private_route_table_ids[0]
-  vpc_endpoint_id = aws_vpc_endpoint.s3.id
-}
-*/

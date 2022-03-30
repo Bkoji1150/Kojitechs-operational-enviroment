@@ -29,8 +29,10 @@ terraform {
   required_version = ">=1.1.5"
 
   backend "s3" {
-    bucket = "operational.vpc.tf.kojitechs"
-    key    = "path/env"
-    region = "us-east-1"
+    bucket         = "operational.vpc.tf.kojitechs"
+    dynamodb_table = "terraform-lock"
+    key            = "path/env"
+    region         = "us-east-1"
+    encrypt        = "true"
   }
 }

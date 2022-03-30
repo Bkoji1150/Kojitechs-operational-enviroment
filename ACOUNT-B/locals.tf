@@ -1,11 +1,16 @@
 locals {
   default_tags = {
-    Env               = lower(terraform.workspace)
-    service_name      = "reporting"
-    cell_name         = "reporting-frontend"
-    component_name    = "aws-eksnginx"
-    service_tier      = "WEB"
-    builder           = "hqr-devops@bellese.io"
-    application_owner = "hqr-feedback-and-support-product@bellese.io"
+    line_of_business        = var.line_of_business
+    ado                     = var.ado
+    tier                    = var.tier
+    operational_environment = upper(terraform.workspace)
+    tech_poc_primary        = var.tech_poc_primary
+    tech_poc_secondary      = var.tech_poc_secondary
+    application             = "DATA_VPC"
+    builder                 = var.builder
+    application_owner       = var.application_owner
+    vpc                     = var.cell_name
+    cell_name               = var.cell_name
+    component_name          = format("%s-%s", var.component_name, terraform.workspace)
   }
 }
