@@ -83,12 +83,3 @@ variable "aws_account_id" {
     sbx  = "674293488770"
   }
 }
-#variable "key_name" {
-#  type    = string
-#  default = "endptkey"
-#}
-#
-#variable "public_key_path" {
-#  type    = string
-#  default = "/Users/kojibello/.ssh/s3_key.pub"
-#}
