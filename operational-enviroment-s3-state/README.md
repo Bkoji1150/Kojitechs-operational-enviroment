@@ -42,7 +42,7 @@ No modules.
 | <a name="input_application_owner"></a> [application\_owner](#input\_application\_owner) | Email Group for the Application owner. | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | n/a | `string` | `"735972722491"` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
-| <a name="input_bucket"></a> [bucket](#input\_bucket) | n/a | `list(any)` | <pre>[<br>  "ecs.terraform.cluster.terraform",<br>  "ecs.working.cluster.terraform",<br>  "hqr.common.database.module.kojitechs.tf",<br>  "operational.vpc.tf.kojitechs",<br>  "vpc.peering.tf.kojitechs",<br>  "state.tf.data-pipeline.migration.kojitechs"<br>]</pre> | no |
+| <a name="input_bucket"></a> [bucket](#input\_bucket) | n/a | `list(any)` | n/a | yes |
 | <a name="input_builder"></a> [builder](#input\_builder) | Email for the builder of this infrastructure | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_cell_name"></a> [cell\_name](#input\_cell\_name) | Name of the ECS cluster to deploy the service into. | `string` | `"APP"` | no |
 | <a name="input_component_name"></a> [component\_name](#input\_component\_name) | Name of the component. | `string` | `"kojitechs-statebucket-s3-"` | no |

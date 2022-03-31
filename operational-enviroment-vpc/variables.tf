@@ -78,8 +78,4 @@ variable "component_name" {
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
   type        = map(string)
-  default = {
-    prod = "735972722491"
-    sbx  = "674293488770"
-  }
 }
