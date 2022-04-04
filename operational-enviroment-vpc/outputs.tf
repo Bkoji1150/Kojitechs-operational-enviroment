@@ -6,6 +6,9 @@ output "vpc_id" {
   value       = module.vpc.vpc_id
 }
 
+output "db_subnet_ids" {
+  value = module.vpc.database_subnet_group
+}
 # VPC CIDR blocks
 output "vpc_cidr_block" {
   description = "The CIDR block of the VPC"
@@ -23,10 +26,17 @@ output "private_subnets" {
   value       = module.vpc.private_subnets
 }
 
+output "private_subnets_cidrs" {
+  value = module.vpc.private_subnets_cidr_blocks
+}
 # VPC Public Subnets
 output "public_subnets" {
   description = "List of IDs of public subnets"
   value       = module.vpc.public_subnets
+}
+
+output "db_subnets_names" {
+  value = module.vpc.database_subnet_group_name
 }
 
 # VPC NAT gateway Public IP
@@ -43,6 +53,9 @@ output "database_subnets" {
   value       = module.vpc.database_subnets
 }
 
+output "database_cidr" {
+  value = module.vpc.database_subnets_cidr_blocks
+}
 output "route_table_id" {
   description = "List of IDs of route table id"
   value       = module.vpc.vpc_main_route_table_id
@@ -52,4 +65,11 @@ output "route_table_id" {
 output "azs" {
   description = "A list of availability zones spefified as argument to this module"
   value       = module.vpc.azs
+}
+output "baston_id" {
+  value = aws_security_group.app_sg3.id
+}
+
+output "default_security_group_id" {
+  value = module.vpc.default_security_group_id
 }

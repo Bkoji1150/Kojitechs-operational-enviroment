@@ -5,5 +5,6 @@ bucket = [
   "operational.vpc.tf.kojitechs",
   "vpc.peering.tf.kojitechs",
   "state.tf.data-pipeline.migration.kojitechs",
-  "state.tf.aws.rdscluster.kojitechs"
+  "state.tf.aws.rdscluster.kojitechs",
+  "state.tf.aws.rdscluster.mysqlaurora.kojitechs"
 ]

@@ -3,13 +3,22 @@ variable "aws_region" {
   type    = string
   default = "us-east-1"
 }
-
-variable "vpc_cidr" {
-  type = string
-}
+#
+#variable "vpc_cidr" {
+#  type = string
+#}
 
 variable "private_subnets" {
   type = list(any)
+}
+
+variable "myipp" {
+
+  default = "71.163.242.34/32"
+
+}
+variable "lambda_buckets" {
+  default = ["lambda.bucket.secrets.rotation"]
 }
 
 variable "public_subnets" {
@@ -78,4 +87,33 @@ variable "component_name" {
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
   type        = map(string)
+}
+variable "db_subnets_cidr" {}
+
+variable "app_port" {
+  default = "3306"
+}
+
+variable "dns_name" {
+  type = map(string)
+  default = {
+    prod = "kojitechs.com"
+    sbx  = "kelderanyi.com"
+  }
+}
+
+variable "dns_nam" {
+  type = map(string)
+  default = {
+    prod = "kojitechs.com"
+    sbx  = "www.kelderanyi.com"
+  }
+}
+
+variable "subject_alternative_names" {
+  type = map(string)
+  default = {
+    prod = "*.kojitechs.com"
+    sbx  = "*.kelderanyi.com"
+  }
 }
