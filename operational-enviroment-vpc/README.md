@@ -1,6 +1,5 @@
 ## operational-enviroment-vpc
 
-
 This module was built VPC IN operational-enviroment-vpc[cookiecutter-microservice](https://github.com/Bkoji1150/AWS-S3-CROSS-ACCOUNT-ACCESS-WITH-TERRAFORM).
 
 <!-- prettier-ignore-start -->
