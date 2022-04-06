@@ -6,10 +6,10 @@ module "alb" {
 
   name               = "${var.component_name}-alb"
   load_balancer_type = "application"
-  vpc_id             = module.vpc.vpc_id
+  vpc_id             = local.vpc_id
   subnets = [
-    module.vpc.public_subnets[0],
-    module.vpc.public_subnets[1]
+    local.public_subnet[0],
+    local.public_subnet[1]
   ]
   #security_groups = [module.loadbalancer_sg.this_security_group_id]
   security_groups = [aws_security_group.web_sg.id]
@@ -118,16 +118,16 @@ module "alb" {
       }
       protocol_version = "HTTP1"
       # App3 Target Group - Targets
-      #      targets = {
-      #        my_app3_vm1 = {
-      #          target_id =  module.sprint_instance.id
-      #          port      = 8080
-      #        },
-      #        my_app3_vm2 = {
-      #          target_id = module.sprint_instance.id
-      #          port      = 8080
-      #        }
-      #      }
+      targets = {
+        my_app3_vm1 = {
+          target_id = module.sprint_instance.id
+          port      = 8080
+        },
+        my_app3_vm2 = {
+          target_id = module.sprint_instance.id
+          port      = 8080
+        }
+      }
       #tags =local.common_tags # Target Group Tags
     }
   ]

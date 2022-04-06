@@ -1,5 +1,5 @@
 resource "aws_security_group" "web_sg" {
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = local.vpc_id
   name        = format("%s-%s", var.component_name, "web_sg")
   description = "Allow inbound traffic to ${format("%s-%s", var.component_name, terraform.workspace)} ec2"
   ingress {
@@ -39,14 +39,14 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_security_group" "app_sg1" {
-  vpc_id      = module.vpc.vpc_id
+  vpc_id      = local.vpc_id
   name        = format("%s-%s", var.component_name, "app_sg1", )
   description = "Allow inbound traffic from publich ssh instance to app_sg1"
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [module.vpc.vpc_cidr_block]
+    cidr_blocks = [local.vpc_cdir]
   }
   egress {
     description = "Allow all ip and ports outbound"
@@ -57,25 +57,5 @@ resource "aws_security_group" "app_sg1" {
   }
   lifecycle {
     create_before_destroy = true
-  }
-}
-
-resource "aws_security_group" "app_sg3" {
-  vpc_id      = module.vpc.vpc_id
-  name        = format("%s-%s", var.component_name, "app_sg3", )
-  description = "Allow inbound traffic from publich ssh instance to app_sg3"
-  ingress {
-    description = "Allow traffic to port from port ${var.app_port}"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = [module.vpc.vpc_cidr_block]
-  }
-  egress {
-    description = "Allow all ip and ports outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
   }
 }

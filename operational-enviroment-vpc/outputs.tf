@@ -1,6 +1,4 @@
-# VPC Output Values
 
-# VPC ID
 output "vpc_id" {
   description = "The ID of the VPC"
   value       = module.vpc.vpc_id
@@ -9,10 +7,9 @@ output "vpc_id" {
 output "db_subnet_ids" {
   value = module.vpc.database_subnet_group
 }
-# VPC CIDR blocks
-output "vpc_cidr_block" {
-  description = "The CIDR block of the VPC"
-  value       = module.vpc.vpc_cidr_block
+
+output "vpc_cdr" {
+  value = module.vpc.vpc_cidr_block
 }
 
 output "public_subnet_cidr_block" {
@@ -20,7 +17,7 @@ output "public_subnet_cidr_block" {
   value       = module.vpc.public_subnets_cidr_blocks
 }
 
-# VPC Private Subnets
+
 output "private_subnets" {
   description = "List of IDs of private subnets"
   value       = module.vpc.private_subnets
@@ -66,10 +63,19 @@ output "azs" {
   description = "A list of availability zones spefified as argument to this module"
   value       = module.vpc.azs
 }
-output "baston_id" {
-  value = aws_security_group.app_sg3.id
+
+output "app_sg" {
+  description = "App security group created by the operational environment"
+  value       = aws_security_group.app_sg.id
 }
 
 output "default_security_group_id" {
   value = module.vpc.default_security_group_id
+}
+
+output "ecs_instance_profile" {
+  value = aws_iam_instance_profile.ec2profile.name
+}
+output "key_pair" {
+  value = aws_key_pair.keypair.id
 }

@@ -3,20 +3,15 @@ variable "aws_region" {
   type    = string
   default = "us-east-1"
 }
-#
-#variable "vpc_cidr" {
-#  type = string
-#}
 
 variable "private_subnets" {
   type = list(any)
 }
 
 variable "myipp" {
-
   default = "71.163.242.34/32"
-
 }
+
 variable "lambda_buckets" {
   default = ["lambda.bucket.secrets.rotation"]
 }
@@ -60,11 +55,13 @@ variable "line_of_business" {
   type        = string
   default     = "Kojitechs"
 }
+
 variable "ado" {
   description = "Compainy name for this project"
   type        = string
   default     = "Kojitechs"
 }
+
 variable "tier" {
   type        = string
   description = "Canonical name of the application tier"
@@ -83,24 +80,12 @@ variable "component_name" {
   default     = "hqr-common-vpc"
 }
 
-
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
   type        = map(string)
 }
+
 variable "db_subnets_cidr" {}
-
-variable "app_port" {
-  default = "3306"
-}
-
-variable "dns_name" {
-  type = map(string)
-  default = {
-    prod = "kojitechs.com"
-    sbx  = "kelderanyi.com"
-  }
-}
 
 variable "dns_nam" {
   type = map(string)
@@ -108,6 +93,10 @@ variable "dns_nam" {
     prod = "kojitechs.com"
     sbx  = "www.kelderanyi.com"
   }
+}
+
+variable "db_port" {
+  description = "Please provide the db port"
 }
 
 variable "subject_alternative_names" {

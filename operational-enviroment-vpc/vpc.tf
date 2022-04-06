@@ -5,6 +5,10 @@ locals {
   vpc_cidr_prod = "10.0.0.0/16"
 }
 
+data "aws_availability_zones" "available" {
+  state = "available"
+}
+
 module "required_tags" {
   source = "git::git@github.com:Bkoji1150/kojitechs-tf-aws-required-tags.git"
 
@@ -23,11 +27,6 @@ module "required_tags" {
 }
 
 
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -42,48 +41,26 @@ module "vpc" {
 
   enable_nat_gateway = true
   enable_vpn_gateway = false
-
 }
 
-resource "aws_s3_bucket" "lambda_bucket" {
-  count  = terraform.workspace == "sbx" ? length(var.lambda_buckets) : 0
-  bucket = var.lambda_buckets[count.index]
+# APP SECURITY GROUP
 
-}
-
-resource "aws_s3_bucket_policy" "allow_lambda_bucketaccount" {
-  count  = terraform.workspace == "sbx" ? length(var.lambda_buckets) : 0
-  bucket = aws_s3_bucket.lambda_bucket[0].id
-  policy = data.aws_iam_policy_document.allow_access_lambda_bucket_account[count.index].json
-}
-
-
-data "aws_iam_policy_document" "allow_access_lambda_bucket_account" {
-  count = terraform.workspace == "sbx" ? length(var.lambda_buckets) : 0
-
-  statement {
-    effect = "Allow"
-    principals {
-      type = "AWS"
-      identifiers = ["arn:aws:iam::735972722491:role/Role_For-S3_Creation",
-      "arn:aws:iam::674293488770:role/Role_For-S3_Creation"]
-    }
-
-    principals {
-      type        = "Service"
-      identifiers = ["lambda.amazonaws.com"]
-    }
-
-    actions = [
-      "s3:GetObject",
-      "s3:PutObject",
-      "s3:ListBucket",
-      "s3:DeleteObject",
-    ]
-    resources = [
-      aws_s3_bucket.lambda_bucket[0].arn,
-      join("/", [aws_s3_bucket.lambda_bucket[0].arn, "*"])
-    ]
+resource "aws_security_group" "app_sg" {
+  vpc_id      = module.vpc.vpc_id
+  name        = format("%s-%s", var.component_name, "app_sg", )
+  description = "Allow inbound traffic from publich ssh instance to app_sg3"
+  ingress {
+    description = "Allow traffic to port from port db port ${var.db_port}"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [module.vpc.vpc_cidr_block]
   }
-
+  egress {
+    description = "Allow all ip and ports outbound"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
