@@ -1,4 +1,3 @@
-
 resource "aws_key_pair" "keypair" {
   key_name   = "jenkins_ssh_file"
   public_key = file("/Users/kojibello/.ssh/jenkins_ssh_file.pub")

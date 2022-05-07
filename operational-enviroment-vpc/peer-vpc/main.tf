@@ -52,10 +52,10 @@ locals {
   operational_environment_sbx  = data.terraform_remote_state.operational_sbx.outputs
   prod_public_subnets_ids      = local.operational_environment_prod.public_subnets
   sbx_public_subnets_ids       = local.operational_environment_sbx.public_subnets
-  prod_route_id                = local.operational_environment_prod.route_table_id
-  sbx_route_id                 = local.operational_environment_sbx.route_table_id
-  owner_vpc_id                 = local.operational_environment_prod.vpc_id
-  accepter_account_id          = "674293488770"
+  # prod_route_id                = local.operational_environment_prod.route_table_id
+  # sbx_route_id                 = local.operational_environment_sbx.route_table_id
+  owner_vpc_id        = local.operational_environment_prod.vpc_id
+  accepter_account_id = "674293488770"
 }
 
 provider "aws" {
@@ -91,8 +91,7 @@ module "required_tags" {
 
 module "vpc_peering_cross_account" {
   source = "cloudposse/vpc-peering-multi-account/aws"
-  # Cloud Posse recommends pinning every module to a specific version
-  # version = "x.x.x"
+
   namespace = terraform.workspace
   stage     = "dev"
   name      = "cluster"

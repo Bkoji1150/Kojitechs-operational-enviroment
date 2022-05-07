@@ -9,10 +9,11 @@ sudo yum install -y telnet
 sudo amazon-linux-extras enable java-openjdk11
 sudo yum clean metadata && sudo yum -y install java-11-openjdk
 mkdir /home/ec2-user/app3-usermgmt && cd /home/ec2-user/app3-usermgmt
-wget https://github.com/stacksimplify/temp1/releases/download/1.0.0/usermgmt-webapp.war -P /home/ec2-user/app3-usermgmt
-export DB_HOSTNAME=${endpoint}
-export DB_PORT=${port}
-export DB_NAME=${db_name}
-export DB_USERNAME=${db_user}
-export DB_PASSWORD=${db_password}
-java -jar /home/ec2-user/app3-usermgmt/usermgmt-webapp.war > /home/ec2-user/app3-usermgmt/ums-start.log &
+wget https://github.com/Bkoji1150/kojitechswebapp/releases/download/v1.1.0/kojitechs-0.0.1.war -P /home/ec2-user/app3-usermgmt
+# wget https://github.com/stacksimplify/temp1/releases/download/1.0.0/usermgmt-webapp.war
+export HOST=${endpoint}
+export PORT=${port}
+export DATABASE=${db_name}
+export DB_USER=${db_user}
+export PASSWORD=${db_password}
+java -jar /home/ec2-user/app3-usermgmt/kojitechs-0.0.1.war > /home/ec2-user/app3-usermgmt/kojitechs.log &

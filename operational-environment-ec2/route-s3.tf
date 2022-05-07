@@ -1,13 +1,13 @@
 
 data "aws_route53_zone" "mydomain" {
-  name = lookup(var.dns_name, terraform.workspace)
+  name = var.dns_name
 }
 
 data "aws_caller_identity" "current" {}
 
 resource "aws_route53_record" "default_dns" {
   zone_id = data.aws_route53_zone.mydomain.zone_id
-  name    = var.dns_nam
+  name    = var.dns_name
   type    = "A"
   alias {
     name                   = module.alb.lb_dns_name

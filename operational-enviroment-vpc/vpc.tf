@@ -26,7 +26,6 @@ module "required_tags" {
   component_name          = format("%s-%s", var.component_name, terraform.workspace)
 }
 
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
@@ -39,28 +38,8 @@ module "vpc" {
   database_subnets     = var.db_subnets_cidr
   enable_dns_hostnames = true
 
-  enable_nat_gateway = true
+  enable_nat_gateway = false
   enable_vpn_gateway = false
 }
 
 # APP SECURITY GROUP
-
-resource "aws_security_group" "app_sg" {
-  vpc_id      = module.vpc.vpc_id
-  name        = format("%s-%s", var.component_name, "app_sg", )
-  description = "Allow inbound traffic from publich ssh instance to app_sg3"
-  ingress {
-    description = "Allow traffic to port from port db port ${var.db_port}"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = [module.vpc.vpc_cidr_block]
-  }
-  egress {
-    description = "Allow all ip and ports outbound"
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}

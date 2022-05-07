@@ -48,30 +48,30 @@ module "alb" {
         matcher             = "200-399"
       }
       protocol_version = "HTTP1"
-      # App1 Target Group - Targets
-      targets = {
-        my_app1_vm1 = {
-          target_id = module.ec2_instance_pub.id
-          port      = 80
-        },
-        my_app1_vm2 = {
-          target_id = module.ec2_instance_pub.id
-          port      = 80
-        }
-      }
-      #tags =local.common_tags # Target Group Tags
+      #   App1 Target Group - Targets
+      #      targets = {
+      #        my_app1_vm1 = {
+      #          target_id = module.ec2_instance_pub.id
+      #          port      = 80
+      #        },
+      #        my_app1_vm2 = {
+      #          target_id = module.ec2_instance_pub.id
+      #          port      = 80
+      #        }
+      #      }
+      # tags =local.common_tags # Target Group Tags
     },
     # App2 Target Group - TG Index = 1
     {
       name_prefix          = "app2-"
       backend_protocol     = "HTTP"
-      backend_port         = 80
+      backend_port         = 8080
       target_type          = "instance"
       deregistration_delay = 10
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/app2/index.html"
+        path                = "/login"
         port                = "traffic-port"
         healthy_threshold   = 3
         unhealthy_threshold = 3
@@ -84,11 +84,11 @@ module "alb" {
       targets = {
         my_app2_vm1 = {
           target_id = module.private_instance.id
-          port      = 80
+          port      = 8080
         },
         my_app2_vm2 = {
           target_id = module.private_instance.id
-          port      = 80
+          port      = 8080
         }
       }
       # tags =local.common_tags # Target Group Tags
@@ -117,18 +117,18 @@ module "alb" {
         type            = "lb_cookie"
       }
       protocol_version = "HTTP1"
-      # App3 Target Group - Targets
+      #      App3 Target Group - Targets
       targets = {
         my_app3_vm1 = {
-          target_id = module.sprint_instance.id
+          target_id = module.sprint_instance[0].id
           port      = 8080
         },
         my_app3_vm2 = {
-          target_id = module.sprint_instance.id
+          target_id = module.sprint_instance[1].id
           port      = 8080
         }
       }
-      #tags =local.common_tags # Target Group Tags
+      #    tags =local.common_tags # Target Group Tags
     }
   ]
 

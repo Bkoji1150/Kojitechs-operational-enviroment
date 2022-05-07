@@ -36,7 +36,6 @@ This module was built VPC IN operational-enviroment-vpc[cookiecutter-microservic
 | [aws_key_pair.keypair](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/key_pair) | resource |
 | [aws_s3_bucket.lambda_bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_policy.allow_lambda_bucketaccount](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_policy) | resource |
-| [aws_security_group.app_sg](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
 | [aws_ssm_parameter.keypair](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter) | resource |
 | [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones) | data source |
 | [aws_iam_policy_document.allow_access_lambda_bucket_account](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
@@ -47,21 +46,16 @@ This module was built VPC IN operational-enviroment-vpc[cookiecutter-microservic
 |------|-------------|------|---------|:--------:|
 | <a name="input_ado"></a> [ado](#input\_ado) | Compainy name for this project | `string` | `"Kojitechs"` | no |
 | <a name="input_application_owner"></a> [application\_owner](#input\_application\_owner) | Email Group for the Application owner. | `string` | `"kojibello058@gmail.com"` | no |
-| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | Environment this template would be deployed to | `map(string)` | n/a | yes |
+| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | Environment this template would be deployed to | `map(string)` | <pre>{<br>  "prod": "735972722491",<br>  "sbx": "674293488770"<br>}</pre> | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
 | <a name="input_builder"></a> [builder](#input\_builder) | Email for the builder of this infrastructure | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_cell_name"></a> [cell\_name](#input\_cell\_name) | Name of the ECS cluster to deploy the service into. | `string` | `"APP"` | no |
 | <a name="input_component_name"></a> [component\_name](#input\_component\_name) | Name of the component. | `string` | `"hqr-common-vpc"` | no |
-| <a name="input_db_port"></a> [db\_port](#input\_db\_port) | Please provide the db port | `any` | n/a | yes |
 | <a name="input_db_subnets_cidr"></a> [db\_subnets\_cidr](#input\_db\_subnets\_cidr) | n/a | `any` | n/a | yes |
-| <a name="input_dns_nam"></a> [dns\_nam](#input\_dns\_nam) | n/a | `map(string)` | <pre>{<br>  "prod": "kojitechs.com",<br>  "sbx": "www.kelderanyi.com"<br>}</pre> | no |
-| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | Specifies the major version of the engine that this option group should be associated with | `string` | `"13.4"` | no |
 | <a name="input_lambda_buckets"></a> [lambda\_buckets](#input\_lambda\_buckets) | n/a | `list` | <pre>[<br>  "lambda.bucket.secrets.rotation"<br>]</pre> | no |
 | <a name="input_line_of_business"></a> [line\_of\_business](#input\_line\_of\_business) | Line of Business | `string` | `"Kojitechs"` | no |
-| <a name="input_myipp"></a> [myipp](#input\_myipp) | n/a | `string` | `"71.163.242.34/32"` | no |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `list(any)` | n/a | yes |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `list(any)` | n/a | yes |
-| <a name="input_subject_alternative_names"></a> [subject\_alternative\_names](#input\_subject\_alternative\_names) | n/a | `map(string)` | <pre>{<br>  "prod": "*.kojitechs.com",<br>  "sbx": "*.kelderanyi.com"<br>}</pre> | no |
 | <a name="input_tech_poc_primary"></a> [tech\_poc\_primary](#input\_tech\_poc\_primary) | Primary Point of Contact for Technical support for this service. | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_tech_poc_secondary"></a> [tech\_poc\_secondary](#input\_tech\_poc\_secondary) | Secondary Point of Contact for Technical support for this service. | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_tier"></a> [tier](#input\_tier) | Canonical name of the application tier | `string` | `"APP"` | no |
@@ -70,7 +64,6 @@ This module was built VPC IN operational-enviroment-vpc[cookiecutter-microservic
 
 | Name | Description |
 |------|-------------|
-| <a name="output_app_sg"></a> [app\_sg](#output\_app\_sg) | App security group created by the operational environment |
 | <a name="output_azs"></a> [azs](#output\_azs) | A list of availability zones spefified as argument to this module |
 | <a name="output_database_cidr"></a> [database\_cidr](#output\_database\_cidr) | n/a |
 | <a name="output_database_subnets"></a> [database\_subnets](#output\_database\_subnets) | List of IDs of database subnets |

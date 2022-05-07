@@ -3,15 +3,6 @@ variable "aws_region" {
   type    = string
   default = "us-east-1"
 }
-#
-#variable "vpc_cidr" {
-#  type = string
-#}
-
-variable "myipp" {
-  default = "71.163.242.34/32"
-}
-
 
 variable "application_owner" {
   description = "Email Group for the Application owner."
@@ -35,12 +26,6 @@ variable "tech_poc_secondary" {
   description = "Secondary Point of Contact for Technical support for this service."
   type        = string
   default     = "kojibello058@gmail.com"
-}
-
-variable "engine_version" {
-  description = "Specifies the major version of the engine that this option group should be associated with"
-  type        = string
-  default     = "13.4"
 }
 
 variable "line_of_business" {
@@ -77,16 +62,8 @@ variable "aws_account_id" {
   type        = map(string)
 }
 
-variable "dns_nam" {
-  type = string
-}
-
 variable "dns_name" {
-  type = map(string)
-  default = {
-    prod = "kojitechs.com"
-    sbx  = "www.kelderanyi.com"
-  }
+  type = string
 }
 
 variable "subject_alternative_names" {
@@ -95,26 +72,4 @@ variable "subject_alternative_names" {
     prod = "*.kojitechs.com"
     sbx  = "*.kelderanyi.com"
   }
-}
-
-#### Not needed
-variable "db_name" {
-  description = "AWS RDS Database Name"
-  type        = string
-}
-# DB Instance Identifier
-variable "db_instance_identifier" {
-  description = "AWS RDS Database Instance Identifier"
-  type        = string
-}
-# DB Username - Enable Sensitive flag
-variable "db_username" {
-  description = "AWS RDS Database Administrator Username"
-  type        = string
-}
-# DB Password - Enable Sensitive flag
-variable "db_password" {
-  description = "AWS RDS Database Administrator Password"
-  type        = string
-  sensitive   = true
 }

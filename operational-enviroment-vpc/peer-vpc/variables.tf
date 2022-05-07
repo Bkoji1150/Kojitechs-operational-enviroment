@@ -69,9 +69,6 @@ variable "owner_profile" {
   default     = "default"
 }
 
-variable "owner_id" {
-  default = "vpc-0c6fd9c61845fb0d4"
-}
 
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
@@ -80,14 +77,4 @@ variable "aws_account_id" {
     prod = "735972722491"
     sbx  = "674293488770"
   }
-}
-
-variable "owner_vpc_id" {
-  description = "Owner VPC Id"
-  default     = "vpc-0d9d248b937daccc1"
-}
-
-variable "accepter_vpc_id" {
-  description = "Accepter VPC Id"
-  default     = "vpc-0c6fd9c61845fb0d4"
 }

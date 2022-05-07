@@ -1,1 +1,1 @@
-dns_nam = "kelderanyi.com"
+dns_name = "kelderanyi.com"

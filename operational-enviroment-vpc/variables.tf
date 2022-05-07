@@ -8,10 +8,6 @@ variable "private_subnets" {
   type = list(any)
 }
 
-variable "myipp" {
-  default = "71.163.242.34/32"
-}
-
 variable "lambda_buckets" {
   default = ["lambda.bucket.secrets.rotation"]
 }
@@ -42,12 +38,6 @@ variable "tech_poc_secondary" {
   description = "Secondary Point of Contact for Technical support for this service."
   type        = string
   default     = "kojibello058@gmail.com"
-}
-
-variable "engine_version" {
-  description = "Specifies the major version of the engine that this option group should be associated with"
-  type        = string
-  default     = "13.4"
 }
 
 variable "line_of_business" {
@@ -83,26 +73,12 @@ variable "component_name" {
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
   type        = map(string)
+  default = {
+    prod = "735972722491"
+    sbx  = "674293488770"
+  }
+
 }
+
 
 variable "db_subnets_cidr" {}
-
-variable "dns_nam" {
-  type = map(string)
-  default = {
-    prod = "kojitechs.com"
-    sbx  = "www.kelderanyi.com"
-  }
-}
-
-variable "db_port" {
-  description = "Please provide the db port"
-}
-
-variable "subject_alternative_names" {
-  type = map(string)
-  default = {
-    prod = "*.kojitechs.com"
-    sbx  = "*.kelderanyi.com"
-  }
-}
