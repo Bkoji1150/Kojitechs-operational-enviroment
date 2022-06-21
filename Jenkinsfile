@@ -14,11 +14,10 @@ pipeline {
             steps{
                 checkout scm
                     sh "pwd"
-                    dir('operational-enviroment-vpc') {
+                        dir('operational-enviroment-vpc') {
+                        sh "pwd"
+                        }      
                     sh "pwd"
-                    }      
-                    sh "pwd"
-                    """
                 }
         }
         stage('TerraformInit'){
