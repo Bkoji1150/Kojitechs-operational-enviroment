@@ -1,8 +1,10 @@
 # Using the module from https://github.com/terraform-aws-modules/terraform-aws-vpc
 locals {
-  required_tags = module.required_tags.aws_default_tags
-  vpc_cidr_sbx  = "100.0.0.0/16"
-  vpc_cidr_prod = "10.0.0.0/16"
+  required_tags        = module.required_tags.aws_default_tags
+  vpc_cidr             = var.vpc_cidr
+  priv_subnet_cidr     = slice([for i in range(1, 225, 2) : cidrsubnet(local.vpc_cidr, 8, i)], 0, var.priv_subnet_count)
+  pub_subnet_cidr      = slice([for i in range(0, 225, 2) : cidrsubnet(local.vpc_cidr, 8, i)], 0, var.pub_subnet_count)
+  database_subnet_cidr = slice([for i in range(99, 225, 2) : cidrsubnet(local.vpc_cidr, 8, i)], 0, var.database_subnet_count)
 }
 
 data "aws_availability_zones" "available" {
@@ -30,15 +32,15 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
   version              = "~> 3.0"
-  name                 = format("%s-%s-%s", var.component_name, "vpc", terraform.workspace)
-  cidr                 = terraform.workspace == "sbx" ? local.vpc_cidr_sbx : local.vpc_cidr_prod
-  azs                  = slice(data.aws_availability_zones.available.names, length(var.public_subnets) - length(var.public_subnets), length(var.public_subnets))
-  private_subnets      = var.private_subnets
-  public_subnets       = var.public_subnets
-  database_subnets     = var.db_subnets_cidr
+  name                 = var.component_name
+  cidr                 = local.vpc_cidr
+  azs                  = data.aws_availability_zones.available.names
+  private_subnets      = local.priv_subnet_cidr
+  public_subnets       = local.pub_subnet_cidr
+  database_subnets     = local.database_subnet_cidr
   enable_dns_hostnames = true
 
-  enable_nat_gateway = false
+  enable_nat_gateway = true
   enable_vpn_gateway = false
 }
 

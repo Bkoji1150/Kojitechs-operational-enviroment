@@ -46,19 +46,20 @@ This module was built VPC IN operational-enviroment-vpc[cookiecutter-microservic
 |------|-------------|------|---------|:--------:|
 | <a name="input_ado"></a> [ado](#input\_ado) | Compainy name for this project | `string` | `"Kojitechs"` | no |
 | <a name="input_application_owner"></a> [application\_owner](#input\_application\_owner) | Email Group for the Application owner. | `string` | `"kojibello058@gmail.com"` | no |
-| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | Environment this template would be deployed to | `map(string)` | <pre>{<br>  "prod": "735972722491",<br>  "sbx": "674293488770"<br>}</pre> | no |
+| <a name="input_aws_account_id"></a> [aws\_account\_id](#input\_aws\_account\_id) | Environment this template would be deployed to | `map(string)` | `{}` | no |
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | n/a | `string` | `"us-east-1"` | no |
 | <a name="input_builder"></a> [builder](#input\_builder) | Email for the builder of this infrastructure | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_cell_name"></a> [cell\_name](#input\_cell\_name) | Name of the ECS cluster to deploy the service into. | `string` | `"APP"` | no |
-| <a name="input_component_name"></a> [component\_name](#input\_component\_name) | Name of the component. | `string` | `"hqr-common-vpc"` | no |
-| <a name="input_db_subnets_cidr"></a> [db\_subnets\_cidr](#input\_db\_subnets\_cidr) | n/a | `any` | n/a | yes |
+| <a name="input_component_name"></a> [component\_name](#input\_component\_name) | Name of the component. | `string` | `"kojitechs-vpc"` | no |
+| <a name="input_database_subnet_count"></a> [database\_subnet\_count](#input\_database\_subnet\_count) | n/a | `number` | `3` | no |
 | <a name="input_lambda_buckets"></a> [lambda\_buckets](#input\_lambda\_buckets) | n/a | `list` | <pre>[<br>  "lambda.bucket.secrets.rotation"<br>]</pre> | no |
 | <a name="input_line_of_business"></a> [line\_of\_business](#input\_line\_of\_business) | Line of Business | `string` | `"Kojitechs"` | no |
-| <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | n/a | `list(any)` | n/a | yes |
-| <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | n/a | `list(any)` | n/a | yes |
+| <a name="input_priv_subnet_count"></a> [priv\_subnet\_count](#input\_priv\_subnet\_count) | n/a | `number` | `3` | no |
+| <a name="input_pub_subnet_count"></a> [pub\_subnet\_count](#input\_pub\_subnet\_count) | n/a | `number` | `5` | no |
 | <a name="input_tech_poc_primary"></a> [tech\_poc\_primary](#input\_tech\_poc\_primary) | Primary Point of Contact for Technical support for this service. | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_tech_poc_secondary"></a> [tech\_poc\_secondary](#input\_tech\_poc\_secondary) | Secondary Point of Contact for Technical support for this service. | `string` | `"kojibello058@gmail.com"` | no |
 | <a name="input_tier"></a> [tier](#input\_tier) | Canonical name of the application tier | `string` | `"APP"` | no |
+| <a name="input_vpc_cidr"></a> [vpc\_cidr](#input\_vpc\_cidr) | n/a | `string` | n/a | yes |
 
 ## Outputs
 

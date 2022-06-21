@@ -7,5 +7,8 @@ bucket = [
   "state.tf.data-pipeline.migration.kojitechs",
   "state.tf.aws.rdscluster.kojitechs",
   "state.tf.aws.rdscluster.mysqlaurora.kojitechs",
-  "state.tf.aws.ec2cluster.instance"
+  "state.tf.aws.ec2cluster.instance",
+  "registration-app-with-end-end-tf",
+  "perfect-ec2-kojitechs-registrationapps-tf",
+  "perfect-operational-environment-network-tf",
 ]

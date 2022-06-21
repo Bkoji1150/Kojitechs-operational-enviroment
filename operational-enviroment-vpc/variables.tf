@@ -4,17 +4,15 @@ variable "aws_region" {
   default = "us-east-1"
 }
 
-variable "private_subnets" {
-  type = list(any)
+
+variable "vpc_cidr" {
+  type = string
 }
 
 variable "lambda_buckets" {
   default = ["lambda.bucket.secrets.rotation"]
 }
 
-variable "public_subnets" {
-  type = list(any)
-}
 
 variable "application_owner" {
   description = "Email Group for the Application owner."
@@ -67,18 +65,27 @@ variable "cell_name" {
 variable "component_name" {
   description = "Name of the component."
   type        = string
-  default     = "hqr-common-vpc"
+  default     = "kojitechs-vpc"
 }
 
 variable "aws_account_id" {
   description = "Environment this template would be deployed to"
   type        = map(string)
-  default = {
-    prod = "735972722491"
-    sbx  = "674293488770"
-  }
+  default     = {}
 
 }
 
+variable "pub_subnet_count" {
+  type    = number
+  default = 5
+}
 
-variable "db_subnets_cidr" {}
+variable "priv_subnet_count" {
+  type    = number
+  default = 3
+}
+
+variable "database_subnet_count" {
+  type    = number
+  default = 3
+}

@@ -1,7 +1,7 @@
 
 resource "aws_s3_bucket" "test_bucket" {
   count  = length(var.bucket)
-  bucket = var.bucket[count.index]
+  bucket = element(var.bucket, count.index)
 
   lifecycle {
     prevent_destroy = true
@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "allow_access_from_another_accountA" {
     principals {
       type = "AWS"
       identifiers = ["arn:aws:iam::735972722491:role/Role_For-S3_Creation",
-      "arn:aws:iam::674293488770:role/Role_For-S3_Creation"]
+      "arn:aws:iam::674293488770:role/Role_For-S3_Creation", "arn:aws:iam::181437319056:role/Role_For-S3_Creation", ]
     }
 
     actions = [
@@ -57,7 +57,7 @@ data "aws_iam_policy_document" "appautoscaling_assume_role_policy" {
     principals {
       type = "AWS"
       identifiers = ["arn:aws:iam::735972722491:role/Role_For-S3_Creation",
-      "arn:aws:iam::674293488770:role/Role_For-S3_Creation"]
+      "arn:aws:iam::674293488770:role/Role_For-S3_Creation", "arn:aws:iam::181437319056:role/Role_For-S3_Creation"]
     }
   }
 }
