@@ -13,16 +13,18 @@ pipeline {
         stage('Git checkout') {
             steps{
                 checkout scm
-                    sh """
-                        cd operational-enviroment-vpc
-                        pwd
-                        ls -l
+                    sh "pwd"
+                    dir('operational-enviroment-vpc') {
+                    sh "pwd"
+                    }      
+                    sh "pwd"
                     """
                 }
         }
         stage('TerraformInit'){
             steps {
                     sh """
+                        
                         rm -rf .terraform 
                         terraform init -upgrade=true
                         echo \$PWD
