@@ -13,17 +13,16 @@ pipeline {
         stage('Git checkout') {
             steps{
                 checkout scm
-                    sh "pwd"
-                        dir('operational-enviroment-vpc') {
-                        sh "pwd"
-                        }      
-                    sh "pwd"
+                    sh"""
+                        cd operational-enviroment-vpc
+                        ls -al
+                    """
                 }
         }
         stage('TerraformInit'){
             steps {
                     sh """
-                        
+                        cd operational-enviroment-vpc
                         rm -rf .terraform 
                         terraform init -upgrade=true
                         echo \$PWD
@@ -39,6 +38,7 @@ pipeline {
                     } catch (Exception e) {
                         echo "Error occurred: ${e.getMessage()}"
                         sh """
+                            cd operational-enviroment-vpc
                             terraform workspace new ${params.ENVIRONMENT}
                             terraform workspace select ${params.ENVIRONMENT}
                         """
